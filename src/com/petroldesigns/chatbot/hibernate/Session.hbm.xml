@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+   "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+   <class name="com.petroldesigns.chatbot.hibernate.Session" table="sessiontb">
+
+      <id name="id" type="long" column="id">
+         <generator class="native"/>
+      </id>
+
+      <property name="username" column="username" type="string"/>
+      <property name="start" column="start" type="timestamp"/>
+      <property name="last" column="last" type="timestamp"/>
+      <property name="total" column="total" type="int"/>
+		<property name="state" column="state" type="string"/>
+   </class>
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+   <session-factory>
+      <property name="hibernate.connection.driver_class">
+         com.mysql.jdbc.Driver
+      </property>
+      <property name="hibernate.connection.url">
+      	jdbc:mysql://localhost:3306/testbot
+      </property>
+      <property name="hibernate.connection.username">root</property>
+      <property name="hibernate.connection.password">password</property>
+      <property name="hibernate.pool_size">5</property>
+      <property name="hibernate.show_sql">false</property>
+      <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+      <mapping resource="com/petroldesigns/chatbot/hibernate/User.hbm.xml"/>
+      <mapping resource="com/petroldesigns/chatbot/hibernate/Session.hbm.xml"/>
+
+</session-factory>
+</hibernate-configuration>

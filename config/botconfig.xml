@@ -1,0 +1,6 @@
+<petrolbot key="AIMTester (Key:keyhere)">
+	<aolaccount username="AIMTester" password="password"/>
+	<conversation path="../config/McLovin.xml"/>
+	<synonyms path="../config/synonyms.cfg"/>
+	<hibernate path="../config/hibernate.cfg.xml"/>
+</petrolbot>

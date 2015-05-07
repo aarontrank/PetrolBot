@@ -1,0 +1,261 @@
+<project default="all">	
+	<property name="name" value="petrolbot" />
+	
+	<property name="src" location="src" />
+	<property name="docs" location="docs" />
+	
+	<property name="libs" location="lib" />
+		<property name="hibernate-libs" value="${libs}/hibernate-libs" />
+		<property name="acclib-win" value="${libs}/acclib/win1_5" />
+		<property name="acclib-mac" value="${libs}/acclib/mac1_5" />
+		<property name="acclib-lin" value="${libs}/acclib/lin1_5" />
+	
+	<property name="config" location="config" />
+		<property name="hibernate" value="${config}/hibernate" />
+  
+	<property name="dist" location="dist" />
+		<property name="bin" location="${dist}/bin" />
+		<property name="lib" location="${dist}/lib" />
+		<property name="doc" location="${dist}/docs" />
+		<property name="cfg" location="${dist}/config" />
+  
+	<path id="classpath.base">
+			<pathelement location="." />
+			<fileset dir="${libs}">
+			   	<include name="**/*.jar"/>
+			   	<include name="**/*.zip"/>
+			</fileset>
+	</path>
+	
+	<path id="classpath.dist">
+			<pathelement location="." />
+			<fileset dir="${lib}">
+			   	<include name="**/*.jar"/>
+			   	<include name="**/*.zip"/>
+			</fileset>
+	</path>
+	
+	
+	<target name="init" depends="clean">
+		<mkdir dir="${dist}" />
+		<mkdir dir="${bin}" />
+		<mkdir dir="${lib}" />
+		<mkdir dir="${doc}" />
+		<mkdir dir="${cfg}" />
+	</target>
+
+   <target name="schema">
+      <taskdef
+         name="schemaexport"
+         classname="org.hibernate.tool.hbm2ddl.SchemaExportTask"
+         classpathref="classpath.base"/>
+
+      <schemaexport
+         properties="${hibernate}/hibernate.properties"
+         quiet="no"
+         text="yes"
+         drop="no"
+      	delimiter=";"
+         output="dist/export.sql">
+            <fileset dir="${src}">
+               <include name="**/*.hbm.xml"/>
+            </fileset>
+      </schemaexport>
+   </target>
+
+	<target name="javadoc">
+	  <javadoc packagenames="com.petroldesigns.chatbot.*"
+	           sourcepath="${src}"
+	           defaultexcludes="yes"
+	           destdir="${docs}/api"
+	           author="true"
+	           version="true"
+	           use="true"
+	           windowtitle="PetrolBot API">
+	    <doctitle><![CDATA[<h1>Test</h1>]]></doctitle>
+	    <bottom><![CDATA[<i>Copyright &#169; 2008 Petrol Designs. All Rights Reserved.</i>]]></bottom>
+	    <tag name="todo" scope="all" description="To do:"/>
+	  </javadoc>
+	</target>
+
+   <target name="clean">
+      <delete dir="${dist}" />
+      <delete dir="${bin}" />
+      <delete file="${lib}/${name}.jar" />
+   </target>
+	
+	<target name="init-mac" depends="init">
+		<copy todir="${lib}" filtering="on">
+            <fileset dir="${libs}">
+            	<include name="*.*"/>
+            </fileset>
+			<fileset dir="${hibernate-libs}">
+				<include name="*.*"/>
+			</fileset>
+			<fileset dir="${acclib-mac}">
+				<include name="*.*"/>
+			</fileset>
+        </copy>
+		<copy todir="${bin}" filtering="on">
+            <fileset dir="scripts/mac">
+            	<include name="*.*"/>
+            </fileset>
+        </copy>
+		<copy todir="${doc}" filtering="on">
+            <fileset dir="${docs}">
+            	<include name="*.*"/>
+            </fileset>
+			<fileset dir="${docs}/mac">
+				<include name="*.*"/>
+			</fileset>
+        </copy>
+		<copy todir="${cfg}" filtering="on">
+            <fileset dir="${config}">
+            	<include name="*.*"/>
+            </fileset>
+			<fileset dir="${hibernate}">
+				<include name="*.*"/>
+			</fileset>
+        </copy>
+	</target>
+	
+   <target name="compile-mac" depends="init-mac">
+      <javac srcdir="${src}" destdir="${bin}">
+         <classpath refid="classpath.dist" />
+      </javac>
+   	<copy todir="${bin}/com/petroldesigns/chatbot/hibernate" filtering="on">
+   	            <fileset dir="${src}/com/petroldesigns/chatbot/hibernate">
+   	            	<include name="*.xml"/>
+   	            </fileset>
+   	        </copy>
+   </target>
+	
+   <target name="dist-mac" depends="compile-mac">
+      <jar
+         destfile="${lib}/${name}.jar"
+      	basedir="${bin}"
+      	         includes="**/*.*"/>
+   		<delete dir="${bin}/com" />
+   </target>
+	
+	
+	<target name="init-win" depends="init">
+		<copy todir="${lib}" filtering="on">
+            <fileset dir="${libs}">
+            	<include name="*.*"/>
+            </fileset>
+			<fileset dir="${hibernate-libs}">
+				<include name="*.*"/>
+			</fileset>
+			<fileset dir="${acclib-win}">
+				<include name="*.*"/>
+			</fileset>
+        </copy>
+		<copy todir="${lib}" filtering="on">
+            <fileset dir="scripts/win">
+            	<include name="*.*"/>
+            </fileset>
+        </copy>
+		<copy todir="${lib}" filtering="on">
+		            <fileset dir="${config}">
+		            	<include name="log4j.cfg"/>
+		            </fileset>
+		</copy>
+		<copy todir="${bin}" filtering="on">
+		            <fileset dir="scripts/win">
+		            	<include name="*.*"/>
+		            </fileset>
+		</copy>
+		<copy todir="${doc}" filtering="on">
+            <fileset dir="${docs}">
+            	<include name="*.*"/>
+            </fileset>
+			<fileset dir="${docs}/win">
+				<include name="*.*"/>
+			</fileset>
+        </copy>
+		<copy todir="${cfg}" filtering="on">
+            <fileset dir="${config}">
+            	<include name="*.*"/>
+            </fileset>
+			<fileset dir="${hibernate}">
+				<include name="*.*"/>
+			</fileset>
+        </copy>
+	</target>
+	
+   <target name="compile-win" depends="init-win">
+      <javac srcdir="${src}" destdir="${bin}">
+         <classpath refid="classpath.dist" />
+      </javac>
+   		<copy todir="${bin}/com/petroldesigns/chatbot/hibernate" filtering="on">
+            <fileset dir="${src}/com/petroldesigns/chatbot/hibernate">
+            	<include name="*.xml"/>
+            </fileset>
+        </copy>
+   </target>
+	
+   <target name="dist-win" depends="compile-win">
+      <jar
+         destfile="${lib}/${name}.jar"
+         basedir="${bin}"
+         includes="**/*.*"/>
+   	<delete dir="${bin}/com" />
+   </target>
+	
+	<target name="init-lin" depends="init">
+		<copy todir="${lib}" filtering="on">
+            <fileset dir="${libs}">
+            	<include name="*.*"/>
+            </fileset>
+			<fileset dir="${hibernate-libs}">
+				<include name="*.*"/>
+			</fileset>
+			<fileset dir="${acclib-lin}">
+				<include name="*.*"/>
+			</fileset>
+        </copy>
+		<copy todir="${bin}" filtering="on">
+            <fileset dir="scripts/lin">
+            	<include name="*.*"/>
+            </fileset>
+        </copy>
+		<copy todir="${doc}" filtering="on">
+            <fileset dir="${docs}">
+            	<include name="*.*"/>
+            </fileset>
+			<fileset dir="${docs}/lin">
+				<include name="*.*"/>
+			</fileset>
+        </copy>
+		<copy todir="${cfg}" filtering="on">
+            <fileset dir="${config}">
+            	<include name="*.*"/>
+            </fileset>
+			<fileset dir="${hibernate}">
+				<include name="*.*"/>
+			</fileset>
+        </copy>
+	</target>
+	
+   <target name="compile-lin" depends="init-lin">
+      <javac srcdir="${src}" destdir="${bin}">
+         <classpath refid="classpath.dist" />
+      </javac>
+   	<copy todir="${bin}/com/petroldesigns/chatbot/hibernate" filtering="on">
+   	            <fileset dir="${src}/com/petroldesigns/chatbot/hibernate">
+   	            	<include name="*.xml"/>
+   	            </fileset>
+   	        </copy>
+   </target>
+	
+   <target name="dist-lin" depends="compile-lin">
+      <jar
+         destfile="${lib}/${name}.jar"
+      	basedir="${bin}"
+      	         includes="**/*.*"/>
+   	<delete dir="${bin}/com" />
+   </target>
+
+	<target name="all" depends="dist-win,schema" />
+</project>

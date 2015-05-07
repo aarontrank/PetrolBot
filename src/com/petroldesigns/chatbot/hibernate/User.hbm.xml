@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+   "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+   <class name="com.petroldesigns.chatbot.hibernate.User" table="usertb">
+
+      <id name="id" type="long" column="id">
+         <generator class="native"/>
+      </id>
+
+      <property name="username" column="username" type="string" unique="true"/>
+      <property name="activesession" column="activesession" type="long"/>
+      <property name="optin" column="optin" type="boolean"/>
+      <property name="isbuddy" column="isbuddy" type="boolean"/>
+
+   </class>
+</hibernate-mapping>

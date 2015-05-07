@@ -1,0 +1,93 @@
+<botscript>
+	<node id="a" start="true" text="Hi, This is McLovin, I am a Bot; I advertise for the DVD release for the film 'Superbad' from Sony (&lt;a href='http://www.sony.com/superbad'&gt;www.sony.com/superbad&lt;/a&gt;). For information on Superbad Bot privacy policy, click here, or type 'privacy' at any time.   Do you want to chitty chitty chat with Mclovin?">
+		<response label="yes" action="c"/>
+		<response label="no" action="b"/>
+	</node>
+	
+	<node id="b" text="Ok hit me up later ok."/>
+	
+	<node id="c" text="What up gangsta! So what’s your name?">
+		<response label="*" action="d"/>
+	</node>
+	
+	<node id="d" text="Suuuuup ${1}!, you a guy or a girl? You never know these days.">
+		<response label="guy" action="e"/>
+		<response label="girl" action="f"/>
+	</node>
+	
+	<node id="e" text="That’s cool, but I do love chatting up the ladies. So what’re you up to tonight?">
+		<response label="*" action="g"/>
+	</node>
+	
+	<node id="f" text="Nice, I love chatting with the ladies, so what’re you up to tonight?">
+		<response label="*" action="g"/>
+	</node>
+	
+	<node id="g" text="${1}, huh?  That’s cool.. Want to know what I’m doing?">
+		<response label="no" action="h"/>
+		<response label="yes" action="i"/>
+	</node>
+	
+	<node id="h" text="Don't be a player hater... Want to see my fake id?">
+			<response label="no" action="j"/>
+		<response label="yes" action="k"/>
+	</node>
+	
+	<node id="i" text="So check this playah, I just got a fake ID, it is totally flawless,  and I gave myself the sweetest name ever. I am McLovin! Want to see my id?">
+		<response label="no" action="j"/>
+		<response label="yes" action="k"/>
+	</node>
+	
+	<node id="j" text="So check this I’m heading to a party tonight, it’s gunna be off the chain! So you want to see a photo of me? ">
+		<response label="no" action="m"/>
+		<response label="yes" action="l"/>
+	</node>
+	
+	<node id="k" text=" Ok sweet, click here you’ll see a pic. &lt;a href='http://www.sony.com/superbad'&gt;www.sony.com/superbad&lt;/a&gt;s Did you see it?">
+			<response label="no" action="j"/>
+		<response label="yes" action="n"/>
+	</node>
+	
+	<node id="l" text="Do you love my vest? People either love it or hate it. What do you think?">
+				<response label="like" action="q"/>
+		<response label="hate" action="s"/>
+	</node>
+	
+	<node id="m" text="I am wearing a pink vest.   What do you think?">
+		<response label="like" action="q"/>
+		<response label="hate" action="s"/>
+	</node>
+	
+	<node id="n" text="Amazing right, so here is my strategy, I put my age as 25 cause think about it so many dorks come into a liquor store with a fake ID and say they’re 21, so my strategy is genius. FYI, How cool is it that I have one name, just Mclovin. TIGHT! Ever met someone named McLovin?">
+		<response label="yes" action="o"/>
+		<response label="no" action="p"/>
+	</node>
+	
+	<node id="o" text="For real? That’s amazing, multiple Mclovin’s nice! Check out my myspace page, it is chalk full of more Mclovin (&lt;a href='http://www.myspace.com/superbadmclovin'&gt;www.myspace.com/superbadmclovin&lt;/a&gt;) . I like to play both sides too, so here’s my Facebook site too (&lt;a href='http://www.facebook.com/group.php?gid=2380748726'&gt;http://www.facebook.com/group.php?gid=2380748726&lt;/a&gt;).  Let me know if you see it.">
+		<response label="*" action="r"/>
+	</node>	
+	
+	<node id="p" text="Well now you have! So get this I’m heading to a party tonight, it’s gunna be off the chain! So you want to see a photo of me? ">
+		<response label="yes" action="r"/>
+		<response label="no" action="m"/>
+	</node>
+
+	<node id="q" text="Thanks! It totally makes me look older. Did you want to play a game? There is a funny games over at the Superbad site. (&lt;a href='http://www.sony.com/superbad'&gt;www.sony.com/superbad&lt;/a&gt;)    Ping me after if you want to chat some more.">
+		<response label="*" action="u"/>
+	</node>	
+	
+	<node id="r" text="Do you love my vest? People either love it or hate it. What do you think? ">
+		<response label="like" action="t"/>
+		<response label="hate" action="s"/>
+	</node>
+		
+	<node id="s" text="Seth and Evan hate it too! . Did you want to play a game? There are some is a  funny games over at the Superbad site. &lt;a href='http://www.sonypictures.com/superbadgame'&gt;http://www.sonypictures.com/superbadgame&lt;/a&gt;.  Ping me after if you want to chat some more.  ">
+			<response label="*" action="u"/>
+	</node>	
+	
+	<node id="t" text="Chicka, chicka, yeaaaa!,  It totally makes me look older, right? Did you want to play a game? There’s a funny game over at the Superbad site. www.sony.com/superbad Ping me after if you want to chat some more. ">
+		<response label="*" action="u"/>
+	</node>		
+	
+	<node id="u" text="Oh and if you want to adopt my AIM Superbad Expression &lt;a href='http://pr.atwola.com/promoclk/100000075x1148923021x1079724241/aol?redir=http:%2F%2Faolexpressions.aol.com%2Fmain.adp%3Fexptypeid%3D0%26catid%3D97%26subcatid%3D2467%26clientid%3D21'&gt;click here&lt;/a&gt;  It has cool video clips and audio from Superbad. There’s also some cool stuff for your mobile phone &lt;a href='www.sonypictures.com/superbad'&gt;here.&lt;/a&gt;s Peace out homey, check u later."/>
+</botscript>
